@@ -1,0 +1,23 @@
+{
+  "name": "jsRomanNumerals",
+  "version": "1.0.0",
+  "description": "Converting Arabic Numbers to Roman Numerals",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brinfoleo/jsRomanNumerals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brinfoleo/jsRomanNumerals/issues"
+  },
+  "homepage": "https://github.com/brinfoleo/jsRomanNumerals#readme",
+  "dependencies": {
+    "jest": "^27.3.1"
+  }
+}
