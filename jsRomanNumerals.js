@@ -1,80 +1,75 @@
 
-function Level(i, v, x) {
-    this.i = i;
-    this.v = v;
-    this.x = x
-}
-
-levels = new Array();
-
-levels[0] = new Level('I', 'V', 'X');
-levels[1] = new Level('X', 'L', 'C');
-levels[2] = new Level('C', 'D', 'M');
-
-
-
+const levels = [({ 'i': 'I', 'v': 'V', 'x': 'X' }), ({ 'i': 'X', 'v': 'L', 'x': 'C' }), ({ 'i': 'C', 'v': 'D', 'x': 'M' })];
 
 function calcDigit(d, l) {
+    let str = '';
     if (l > 2) {
         str = '';
-        for (var m = 1; m <= d * Math.pow(10, l - 3); m++)
-            str += 'M';
-        return str
+        for (let m = 1; m <= d * Math.pow(10, l - 3); m++) str += 'M';
+
+    } else {
+
+        switch (d) {
+            case 1:
+                str = levels[l].i
+                break;
+
+            case 2:
+                str = levels[l].i + levels[l].i
+                break;
+            case 3:
+                str = levels[l].i + levels[l].i + levels[l].i
+                break;
+            case 4:
+                str = levels[l].i + levels[l].v
+                break;
+            case 5:
+                str = levels[l].v;
+                break;
+            case 6:
+                str = levels[l].v + levels[l].i;
+                break;
+            case 7:
+                str = levels[l].v + levels[l].i + levels[l].i;
+                break;
+            case 8:
+                str = levels[l].v + levels[l].i + levels[l].i + levels[l].i;
+                break;
+            case 9:
+                str = levels[l].i + levels[l].x;
+                break;
+            default:
+                str = '';
+                break;
+        }
     }
-
-    else
-        if (d == 1)
-            return levels[l].i
-        else
-            if (d == 2)
-                return levels[l].i + levels[l].i
-            else
-                if (d == 3)
-                    return levels[l].i + levels[l].i + levels[l].i
-                else
-                    if (d == 4)
-                        return levels[l].i + levels[l].v
-                    else
-                        if (d == 5)
-                            return levels[l].v
-                        else
-                            if (d == 6)
-                                return levels[l].v + levels[l].i
-                            else
-                                if (d == 7)
-                                    return levels[l].v + levels[l].i + levels[l].i
-                                else
-                                    if (d == 8)
-                                        return levels[l].v + levels[l].i + levels[l].i + levels[l].i
-                                    else
-                                        if (d == 9)
-                                            return levels[l].i + levels[l].x
-                                        else
-                                            return ''
+    return str;
 }
-
 function toRoman(n) {
-    var r = ''
+    let r = '';
     n = n.toString();
-    for (var c = 0; c < n.length; c++)
+    for (let c = 0; c < n.length; c++)
         r += calcDigit(eval(n.charAt(c)), n.length - c - 1);
     return r
 }
+function toNumeral(n) {
+    let r = 0;
+    let next = '';
+    let prev = '';
+    n = String(n);
 
-function fromRoman(n) {
-    var r = 0
+    for (let c = 0; c < n.length; c++) {
+        let chr = n.charAt(c).toLowerCase();
 
-    for (var c = 0; c < n.length; c++) {
-        var chr = n.charAt(c).toLowerCase();
         if (c < n.length - 1)
-            var next = n.charAt(c + 1).toLowerCase()
+            next = n.charAt(c + 1).toLowerCase()
         else
-            var next = '';
+            next = '';
 
         if (c > 0)
-            var prev = n.charAt(c - 1).toLowerCase()
+            prev = n.charAt(c - 1).toLowerCase()
         else
-            var prev = '';
+            prev = '';
 
         if (chr == 'i') {
             if (next == 'v')
@@ -140,33 +135,17 @@ function fromRoman(n) {
     return r
 
 }
+function getConvert(n) {
 
-
-function isNuneric(str) {
-    for (var c = 0; c < str.length; c++) {
-        var chr = str.charAt(c);
-        if (chr != '0' & chr != '1' & chr != '2' & chr != '3' & chr != '4' & chr != '5' & chr != '6' & chr != '7' & chr != '8' & chr != '9')
-            return false
-    }
-    return true
-}
-
-function get(n) {
-
-    //var n = f.elements[0].value
-
-    if (!isNuneric(n)) {
-        for (var c = 0; c < n.length; c++) {
-            var chr = n.charAt(c).toLowerCase();
-            if (chr != 'i' & chr != 'v' & chr != 'x' & chr != 'l' & chr != 'c' & chr != 'd' & chr != 'm') {
-                alert('Only the letters IVXLCDM, please');
-                return false
-            }
-        }
-        return fromRoman(n);
-    }
-    else {
+    if (!isNaN(n)) {
         return toRoman(n);
+    } else {
+        let validate = [...n].reduce((acc, elem) => {
+            return [..."IVXLCDM"].includes(elem) == false ? false : acc;
+        }, true);
+
+        if (!validate) return 'Only the letters IVXLCDM, please';
+        return toNumeral(n);
     }
 }
-module.exports = get;
+module.exports = getConvert;
