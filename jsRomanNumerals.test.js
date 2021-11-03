@@ -1,69 +1,17 @@
-const getConvert = require('./jsRomanNumerals');
-const getConvertEasy = require('./jsRomanNumeralEasy');
+const toRoman = require('./jsRomanNumerals');
 
-test('Convert Roman Numeral to Arabic Number', () => {
-    expect(getConvert('XVII')).toBe(17);
-  expect(getConvert('XX')).toBe(20);
-  expect(getConvert('XIV')).toBe(14);
-  expect(getConvert('XXV')).toBe(25);
-  expect(getConvert('LI')).toBe(51);
-  expect(getConvert('XL')).toBe(40);
-  expect(getConvert('XXXVII')).toBe(37);
-  expect(getConvert('LXII')).toBe(62);
-  expect(getConvert('XLVI')).toBe(46);
-  expect(getConvert('XC')).toBe(90);
-  expect(getConvert('LXXIII')).toBe(73);
-  expect(getConvert('C')).toBe(100);
-  expect(getConvert('XXIX')).toBe(29);
-  expect(getConvert('XCVII')).toBe(97);
+test('convert number 1 to Roman Numeral I', () => {
+    expect(toRoman(1)).toBe('I');
 });
-test('Convert Arabic Number to Roman Numeral', () => {
-    expect(getConvert('XVII')).toBe(17);
-  expect(getConvert('XX')).toBe(20);
-  expect(getConvert('XIV')).toBe(14);
-  expect(getConvert('XXV')).toBe(25);
-  expect(getConvert('LI')).toBe(51);
-  expect(getConvert('XL')).toBe(40);
-  expect(getConvert('XXXVII')).toBe(37);
-  expect(getConvert('LXII')).toBe(62);
-  expect(getConvert('XLVI')).toBe(46);
-  expect(getConvert('XC')).toBe(90);
-  expect(getConvert('LXXIII')).toBe(73);
-  expect(getConvert('C')).toBe(100);
-  expect(getConvert('XXIX')).toBe(29);
-  expect(getConvert('XCVII')).toBe(97);
+test('convert number 9 to Roman Numeral IX', () => {
+    expect(toRoman(9)).toBe('IX');
 });
-
-
-test('Easy Convert Roman Numeral to Arabic Number', () => {
-    expect(getConvertEasy('XVII')).toBe(17);
-    expect(getConvertEasy('XX')).toBe(20);
-    expect(getConvertEasy('XIV')).toBe(14);
-    expect(getConvertEasy('XXV')).toBe(25);
-    expect(getConvertEasy('LI')).toBe(51);
-    expect(getConvertEasy('XL')).toBe(40);
-    expect(getConvertEasy('XXXVII')).toBe(37);
-    expect(getConvertEasy('LXII')).toBe(62);
-    expect(getConvertEasy('XLVI')).toBe(46);
-    expect(getConvertEasy('XC')).toBe(90);
-    expect(getConvertEasy('LXXIII')).toBe(73);
-    expect(getConvertEasy('C')).toBe(100);
-    expect(getConvertEasy('XXIX')).toBe(29);
-    expect(getConvertEasy('XCVII')).toBe(97);
+test('convert number 5 to Roman Numeral V', () => {
+    expect(toRoman(5)).toBe('V');
 });
-test(' Easy Convert Arabic Number to Roman Numeral', () => {
-    expect(getConvertEasy('XVII')).toBe(17);
-    expect(getConvertEasy('XX')).toBe(20);
-    expect(getConvertEasy('XIV')).toBe(14);
-    expect(getConvertEasy('XXV')).toBe(25);
-    expect(getConvertEasy('LI')).toBe(51);
-    expect(getConvertEasy('XL')).toBe(40);
-    expect(getConvertEasy('XXXVII')).toBe(37);
-    expect(getConvertEasy('LXII')).toBe(62);
-    expect(getConvertEasy('XLVI')).toBe(46);
-    expect(getConvertEasy('XC')).toBe(90);
-    expect(getConvertEasy('LXXIII')).toBe(73);
-    expect(getConvertEasy('C')).toBe(100);
-    expect(getConvertEasy('XXIX')).toBe(29);
-    expect(getConvertEasy('XCVII')).toBe(97);
+test('convert number 10 to Roman Numeral X', () => {
+    expect(toRoman(10)).toBe('X');
+});
+test('convert number 29 to Roman Numeral XXIX', () => {
+    expect(toRoman(29)).toBe('XXIX');
 });
